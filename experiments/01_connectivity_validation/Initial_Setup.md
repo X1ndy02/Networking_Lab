@@ -25,7 +25,11 @@ Observations
 All nodes responded successfully with no packet loss.
 Latency varies depending on node but remains within expected limits for a ZeroTier network
 
-Conclusion
+mDNS Test
+Tried to see whetre mac will be bale reach them on local network only without DNS server 
+Commands used + results
+![mDNS_test](../../Photos/mDNS_test.png)
 
-Connectivity across the ZeroTier network is functioning correctly.
-This confirms that the lab environment is ready for further networking experiments such as routing, firewall testing, and packet inspection.
+Identity verifications on each node 
+Commands used + results
+![Identy_Verification](../../Photos/Identy_Verification.png)
