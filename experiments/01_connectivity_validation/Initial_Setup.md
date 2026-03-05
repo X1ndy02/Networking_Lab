@@ -11,14 +11,14 @@ Nodes tested
 - Pi Zero (p1z3r0wh)
 - Mac (management machine)
 
-![Hostnames](experiments/01_connectivity_validation/Hostnames.png)
+![Hostnames](Photos/Hostnames.png)
 
 Test method
 
 ICMP connectivity test was performed using the ping command on Headless Pi5
 
 Commands used + results 
-![Ping Command](experiments/01_connectivity_validation/Ping_Command.png)
+![Ping Command](Photos/Ping_Command.png)
 
 Observations
 
