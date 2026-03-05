@@ -1,0 +1,89 @@
+Lesson Notes: iptables, Netfilter, PREROUTING
+
+this lesson is for me so i can look at it later
+
+Command i used
+
+sudo iptables -t nat -A PREROUTING -i lab0 -p tcp --syn -j REDIRECT --to-ports 9040
+
+
+after looking deeper into command i learned more about kernel that Linux is using, more specific about Netfilter firewall
+
+i realised the command is targeting Netfilter table (-t nat) called nat
+and appended rule to the PREROUTING chain (which is one of the processing stages in the Linux packet flow)
+
+
+flow
+
+incoming packet
+        ↓
+PREROUTING
+        ↓
+routing decision
+        ↓
+INPUT or FORWARD
+        ↓
+POSTROUTING
+
+
+PREROUTING happens before the kernel decides where to send the packet (that is why we intercept traffic here)
+
+then we need to match packets arriving on interface lab0 (-i lab0)
+and match only TCP (Transmission Control Protocol) packets (-p tcp)
+
+when TCP starts clients send SYN (Synchronize flag) in handshake:
+
+SYN
+SYN-ACK
+ACK
+
+
+then jump to REDIRECT action where REDIRECT changes the packet destination to the local machine
+
+in simple words, instead of going to the original destination server, the packet is redirected to a local service
+
+then specify the local port where packets are redirected
+
+--to-ports 9040
+
+
+so again in simple terms it does following
+
+original
+z3r0 → google.com:443
+
+with this rule
+z3r0 → rootnode
+        ↓
+iptables PREROUTING
+        ↓
+redirect to localhost:9040
+        ↓
+Tor client
+        ↓
+Tor network
+        ↓
+destination
+
+
+The client does not know the traffic was redirected.
+
+
+why is PREROUTING required
+
+Because the kernel must modify the packet before routing happens.
+
+If we waited until later stages, the packet would already have been forwarded.
+
+PREROUTING allows interception at the earliest stage.
+
+
+revert rules
+
+remove just this rule
+
+sudo iptables -t nat -D PREROUTING -i lab0 -p tcp --syn -j REDIRECT --to-ports 9040
+
+flush NAT (Network Address Translation) rules
+
+sudo iptables -t nat -F
