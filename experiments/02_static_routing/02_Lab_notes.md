@@ -177,7 +177,6 @@ to resolve this i have to
 
 ![Tor proof](../Photos/torproof.png)
 
-
 Notes (terms used)
 
 DHCP = Dynamic Host Configuration Protocol
