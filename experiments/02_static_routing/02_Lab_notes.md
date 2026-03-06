@@ -175,7 +175,7 @@ to resolve this i have to
 
 (when solved, update this section with the final commands + outputs)
 
-![Tor proof](../Photos/torproof.png)
+![Tor proof](/Photos/torproof.png)
 
 Notes (terms used)
 
